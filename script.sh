@@ -6,17 +6,20 @@
 apt-get update -y
 apt-get upgrade -y
 
+git config --global user.email "abramowski.konrad@gmail.com"
+git config --global user.name "Konrad-Abramowski"
+
 while read -r p; do sudo snap install $p ; done < <(cat << "EOF"
     spotify
     discord
     --classic code
     intellij-idea-ultimate --classic
     postman
+    opera
 EOF
 )
 
 while read -r p; do sudo apt-get install -y $p ; done < <(cat << "EOF"
-    opera-stable
     firefox
     chromium-browser
     obs-studio
