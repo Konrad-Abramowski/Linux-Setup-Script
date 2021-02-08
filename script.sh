@@ -43,6 +43,19 @@ sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_
 sudo apt install pgadmin4 -y
 
 
-# jdk
-# docker
-# pygrid https://github.com/pkkid/pygrid
+### jdk
+sudo apt-get install openjdk-11-jdk -y
+
+# # set JAVA_HOME
+etc_profile_file='/etc/profile'
+if ! grep -q JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 "$etc_profile_file"; then
+echo -e "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64\n
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin\n
+export JAVA_HOME\n
+export JRE_HOME\n
+export PATH\n"  >> $etc_profile_file
+fi
+
+### docker
+### pygrid https://github.com/pkkid/pygrid
+
