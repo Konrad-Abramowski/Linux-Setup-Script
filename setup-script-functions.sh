@@ -60,7 +60,6 @@ fi
 }
 
 install_docker(){
-### docker
 sudo apt-get install \
     apt-transport-https \
     ca-certificates \
@@ -80,15 +79,18 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo apt-get install docker-ce=5:20.10.3~3-0~ubuntu-focal docker-ce-cli=5:20.10.3~3-0~ubuntu-focal containerd.io
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
 }
 
-# config_monitors(){
-# # clear monitors.xml file
-# sudo rm /home/konrad/.config/monitors.xml
-# touch /home/konrad/.config/monitors.xml
+config_monitors(){
+# clear monitors.xml file
+:> /home/konrad/.config/monitors.xml
 
-# # echo -n > ~/.config/monitors.xml
-# #:> ~/.config/monitors.xml
-# sudo echo -e '0r monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
-# echo "zajonc"
-# }
+# insert monitors` configuration to config file
+sudo echo -e '0r monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
+
+xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
+xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-408 --rate 60
+}
