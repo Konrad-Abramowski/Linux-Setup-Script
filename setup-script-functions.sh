@@ -1,24 +1,29 @@
 #!/bin/bash
 
-# declare STRING variables
+# functions
+update_ubuntu_and_packages(){
+    apt-get update -y
+    apt-get upgrade -y
+}
 
-# script body
-apt-get update -y
-apt-get upgrade -y
+config_git(){
+    git config --global user.email "abramowski.konrad@gmail.com"
+    git config --global user.name "Konrad-Abramowski"
+}
 
-git config --global user.email "abramowski.konrad@gmail.com"
-git config --global user.name "Konrad-Abramowski"
-
-while read -r p; do sudo snap install $p ; done < <(cat << "EOF"
+install_applications_with_snap(){ 
+while read -r p; do sudo snap install $p ; done < <(cat << "EOF";
     spotify
     discord
     --classic code
     intellij-idea-ultimate --classic
     postman
-    opera
+     opera
 EOF
 )
+}
 
+install_applications_with_apt-get(){
 while read -r p; do sudo apt-get install -y $p ; done < <(cat << "EOF"
     firefox
     chromium-browser
@@ -26,23 +31,20 @@ while read -r p; do sudo apt-get install -y $p ; done < <(cat << "EOF"
     curl
 EOF
 )
+}
 
-### pgadmin4
-
+install_pgadmin4(){
 # Install the public key for the repository:
 curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
 
 # Create the repository configuration file:
 sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
 
-#
-# Install pgAdmin
-#
-
-# Install for both desktop and web modes:
+# Install pgAdmin4 for both desktop and web modes:
 sudo apt install pgadmin4 -y
+}
 
-
+install_jdk_and_setup_JAVA_HOME(){
 ### jdk
 sudo apt-get install openjdk-11-jdk -y
 
@@ -55,7 +57,9 @@ export JAVA_HOME\n
 export JRE_HOME\n
 export PATH\n"  >> $etc_profile_file
 fi
+}
 
+install_docker(){
 ### docker
 sudo apt-get install \
     apt-transport-https \
@@ -67,7 +71,7 @@ sudo apt-get install \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 sudo add-apt-repository \
-   "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
 
@@ -76,5 +80,15 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo apt-get install docker-ce=5:20.10.3~3-0~ubuntu-focal docker-ce-cli=5:20.10.3~3-0~ubuntu-focal containerd.io
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+}
 
-### pygrid https://github.com/pkkid/pygrid
+# config_monitors(){
+# # clear monitors.xml file
+# sudo rm /home/konrad/.config/monitors.xml
+# touch /home/konrad/.config/monitors.xml
+
+# # echo -n > ~/.config/monitors.xml
+# #:> ~/.config/monitors.xml
+# sudo echo -e '0r monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
+# echo "zajonc"
+# }
