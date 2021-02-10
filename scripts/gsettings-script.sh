@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # import
-source ./gsettings-script-functions.sh
+source ./scripts/gsettings-script-functions.sh
 
 # declare STRING variables
 

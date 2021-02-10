@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo ./setup-script.sh
-./gsettings-script.sh
+sudo ./scripts/setup-script.sh
+./scripts/gsettings-script.sh
 

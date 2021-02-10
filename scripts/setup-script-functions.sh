@@ -89,7 +89,7 @@ config_monitors(){
 :> /home/konrad/.config/monitors.xml
 
 # insert monitors` configuration to config file
-sudo echo -e '0r monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
+sudo echo -e '0r configuration/monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
 
 xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
 xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-408 --rate 60

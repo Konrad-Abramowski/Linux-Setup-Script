@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # import
-source ./setup-script-functions.sh
+source ./scripts/setup-script-functions.sh
 
 # declare STRING variables
 
