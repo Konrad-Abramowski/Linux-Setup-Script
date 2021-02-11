@@ -94,3 +94,32 @@ sudo echo -e '0r configuration/monitors.xml\nw' | ed /home/konrad/.config/monito
 xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
 xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-408 --rate 60
 }
+
+install_pygrid(){
+sudo apt-get install python3-gi python3-xlib -y
+cd /home/konrad/Linux-Setup-Script/libraries
+git clone https://github.com/mjs7231/pygrid.git
+
+cd pygrid && ./pygrid.py
+}
+
+create_user_service_dir(){
+mkdir /home/konrad/.config/systemd/user/
+}
+
+create_pygrid_user_service(){
+# create pygrid service file
+touch /home/konrad/.config/systemd/user/pygrid.service
+# make pygrid service executable
+chmod +x pygrid.service
+# clear pygrid service file
+:> /home/konrad/.config/systemd/user/pygrid.service
+# insert user-services/pygrid.service to /home/konrad/.config/systemd/user/pygrid.service
+echo -e '0r user-services/pygrid.service\nw' | ed /home/konrad/.config/systemd/user/pygrid.service
+# reload user services
+systemctl --user daemon-reload
+# start service
+systemctl --user start pygrid
+# enable service at boot
+systemctl --user enable pygrid
+}

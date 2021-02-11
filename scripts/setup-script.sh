@@ -7,21 +7,20 @@ source ./scripts/setup-script-functions.sh
 
 # script body
 update_ubuntu_and_packages
+config_monitors
+install_pygrid
+create_user_service_dir
+create_pygrid_user_service
 config_git
 install_applications_with_snap
 install_applications_with_apt-get
 install_pgadmin4
 install_jdk_and_setup_JAVA_HOME
 install_docker
-config_monitors
 
-# ### pygrid https://github.com/pkkid/pygrid
-# sudo apt-get install python3-gi python3-xlib -y
-# cd /home/konrad
-# git clone https://github.com/mjs7231/pygrid.git
 
-# # run pygrid on startup
-# touch /etc/rc.local
+
+
 
 # startup_script_file='/etc/rc.local'
 # if ! grep -q !/bin/bash "$startup_script_file"; then

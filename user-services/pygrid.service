@@ -1,0 +1,9 @@
+[Unit]
+Description=PyGrid windows management system
+
+[Service]
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/bin/python3 /home/konrad/Linux-Setup-Script/libraries/pygrid/pygrid.py
+
+[Install]
+WantedBy=default.target
