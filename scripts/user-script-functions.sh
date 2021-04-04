@@ -2,14 +2,14 @@
 
 # functions
 add_applications_to_favourites(){
-gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'opera_opera.desktop', 'chromium_chromium.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_ubuntu-software.desktop', 'intellij-idea-ultimate_intellij-idea-ultimate.desktop', 'code_code.desktop', 'postman_postman.desktop', 'spotify_spotify.desktop', 'pgadmin4.desktop', 'discord_discord.desktop']"
+gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'opera_opera.desktop', 'chromium_chromium.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_ubuntu-software.desktop', 'intellij-idea-ultimate_intellij-idea-ultimate.desktop', 'code_code.desktop', 'postman_postman.desktop', 'spotify_spotify.desktop', 'pgadmin4.desktop', 'discord_discord.desktop', 'webstorm_webstorm.desktop']"
 }
 
 generate_ssh_key_and_copy_to_clipboard(){
-echo | ssh-keygen -t ed25519 -C  "${GIT_EMAIL_ADDRESS}" -y
+echo | ssh-keygen -t ed25519 -C  "${GIT_EMAIL_ADDRESS}"
 eval "$(ssh-agent -s)"
 ssh-add /home/"${USER}"/.ssh/id_ed25519
-xclip -selection clipboard < /home/"${USER}"/.ssh/id_ed25519.pub
+xclip -selection clipboard < /home/"${USERNAME}"/.ssh/id_ed25519.pub
 }
 
 add_pygrid_to_autostart(){
