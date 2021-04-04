@@ -1,5 +1,9 @@
 #!/bin/bash
-mkdir libraries
 
-sudo ./scripts/setup-script.sh
-./scripts/gsettings-script.sh
+if [ ! -d libraries ]; then
+    mkdir libraries
+fi
+
+
+sudo ./scripts/root-script.sh
+./scripts/user-script.sh

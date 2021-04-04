@@ -6,10 +6,6 @@ update_ubuntu_and_packages(){
     apt-get upgrade -y
 }
 
-config_git(){
-    git config --global user.email "abramowski.konrad@gmail.com"
-    git config --global user.name "Konrad-Abramowski"
-}
 
 install_applications_with_snap(){ 
 while read -r p; do sudo snap install $p ; done < <(cat << "EOF";
@@ -17,8 +13,9 @@ while read -r p; do sudo snap install $p ; done < <(cat << "EOF";
     discord
     --classic code
     intellij-idea-ultimate --classic
+    webstorm --classic
     postman
-     opera
+    opera
 EOF
 )
 }
@@ -76,23 +73,12 @@ sudo add-apt-repository \
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
-sudo apt-get install docker-ce=5:20.10.3~3-0~ubuntu-focal docker-ce-cli=5:20.10.3~3-0~ubuntu-focal containerd.io
+sudo apt-get install docker-ce=5:20.10.3~3-0~ubuntu-focal docker-ce-cli=5:20.10.3~3-0~ubuntu-focal containerd.io -y
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-}
-
-config_monitors(){
-# clear monitors.xml file
-:> /home/konrad/.config/monitors.xml
-
-# insert monitors` configuration to config file
-sudo echo -e '0r configuration/monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
-
-xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
-xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-408 --rate 60
 }
 
 install_pygrid(){
@@ -101,25 +87,4 @@ cd /home/konrad/Linux-Setup-Script/libraries
 git clone https://github.com/mjs7231/pygrid.git
 
 cd pygrid && ./pygrid.py
-}
-
-create_user_service_dir(){
-mkdir /home/konrad/.config/systemd/user/
-}
-
-create_pygrid_user_service(){
-# create pygrid service file
-touch /home/konrad/.config/systemd/user/pygrid.service
-# make pygrid service executable
-chmod +x pygrid.service
-# clear pygrid service file
-:> /home/konrad/.config/systemd/user/pygrid.service
-# insert user-services/pygrid.service to /home/konrad/.config/systemd/user/pygrid.service
-echo -e '0r user-services/pygrid.service\nw' | ed /home/konrad/.config/systemd/user/pygrid.service
-# reload user services
-systemctl --user daemon-reload
-# start service
-systemctl --user start pygrid
-# enable service at boot
-systemctl --user enable pygrid
 }
