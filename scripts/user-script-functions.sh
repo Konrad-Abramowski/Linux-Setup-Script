@@ -13,7 +13,7 @@ xclip -selection clipboard < /home/"${USERNAME}"/.ssh/id_ed25519.pub
 }
 
 add_pygrid_to_autostart(){
-cp autostart/pygrid.py.desktop /home/"${USERNAME}"/.config/autostart
+cp /home/konrad/Linux-Setup-Script/autostart/pygrid.py.desktop /home/"${USERNAME}"/.config/autostart
 }
 
 config_monitors(){
@@ -25,4 +25,9 @@ echo -e '0r configuration/monitors.xml\nw' | ed /home/konrad/.config/monitors.xm
 
 xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
 xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-120 --rate 60
+}
+
+install_pygrid(){
+cd /home/konrad/Linux-Setup-Script/libraries
+git clone https://github.com/mjs7231/pygrid.git
 }

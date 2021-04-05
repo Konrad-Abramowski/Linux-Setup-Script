@@ -11,4 +11,5 @@ USERNAME="konrad"
 config_monitors
 add_applications_to_favourites 
 generate_ssh_key_and_copy_to_clipboard $GIT_EMAIL_ADDRESS $USERNAME
+install_pygrid
 add_pygrid_to_autostart $USERNAME

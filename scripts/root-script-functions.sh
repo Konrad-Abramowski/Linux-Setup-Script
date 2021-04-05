@@ -27,6 +27,8 @@ while read -r p; do sudo apt-get install -y $p ; done < <(cat << "EOF"
     obs-studio
     curl
     xclip
+     python3-gi 
+     python3-xlib 
 EOF
 )
 }
@@ -80,12 +82,4 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-}
-
-install_pygrid(){
-sudo apt-get install python3-gi python3-xlib -y
-cd /home/konrad/Linux-Setup-Script/libraries
-git clone https://github.com/mjs7231/pygrid.git
-
-cd pygrid && ./pygrid.py
 }
