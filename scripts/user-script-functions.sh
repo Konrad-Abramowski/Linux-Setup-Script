@@ -13,7 +13,10 @@ xclip -selection clipboard < /home/"${USERNAME}"/.ssh/id_ed25519.pub
 }
 
 add_pygrid_to_autostart(){
-cp /home/konrad/Linux-Setup-Script/autostart/pygrid.py.desktop /home/"${USERNAME}"/.config/autostart
+if [ ! -d /home/"${USERNAME}"/.config/autostart ]; then
+    mkdir /home/"${USERNAME}"/.config/autostart
+fi
+cp /home/konrad/Linux-Setup-Script/autostart/pygrid.py.desktop /home/"${USERNAME}"/.config/autostart/
 }
 
 config_monitors(){
