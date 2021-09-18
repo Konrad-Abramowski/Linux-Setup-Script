@@ -26,8 +26,8 @@ config_monitors(){
 # insert monitors` configuration to config file
 echo -e '0r configuration/monitors.xml\nw' | ed /home/konrad/.config/monitors.xml
 
-xrandr --output DP-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 60
-xrandr --output HDMI-0 --rotate right --mode 1920x1080 --pos 2560x-120 --rate 60
+xrandr --output HDMI-0 --primary --rotate normal --mode 2560x1080 --pos 0x0 --rate 75
+xrandr --output DP-0 --rotate right --mode 2560x1440 --pos 2560x-120 --rate 144
 }
 
 install_pygrid(){
