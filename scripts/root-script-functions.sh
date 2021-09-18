@@ -27,8 +27,9 @@ while read -r p; do sudo apt-get install -y $p ; done < <(cat << "EOF"
     obs-studio
     curl
     xclip
-     python3-gi 
-     python3-xlib 
+    python3-gi
+    python3-xlib
+    npm
 EOF
 )
 }
