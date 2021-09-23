@@ -14,6 +14,7 @@ while read -r p; do sudo snap install $p ; done < <(cat << "EOF";
     --classic code
     intellij-idea-ultimate --classic
     webstorm --classic
+    pycharm-community --classic
     postman
     opera
 EOF
